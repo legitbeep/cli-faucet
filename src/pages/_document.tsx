@@ -8,7 +8,7 @@ import Document, {
 } from "next/document";
 import * as React from "react";
 
-const APP_NAME = "nextcharka-starter";
+const APP_NAME = "cli-faucet";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {

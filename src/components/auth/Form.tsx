@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { useSession, signIn, signOut } from "next-auth/react";
+// import { useSession, signIn, signOut } from "next-auth/react";
 
 const Form = () => {
   console.log(process.env.NEXT_PUBLIC_GITHUB_ID);
-  const { data: session, status } = useSession();
+  // const { data: session, status } = useSession();
   //   const [email, setEmail] = useState("");
   //   const [password, setPassword] = useState("");
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -16,19 +16,19 @@ const Form = () => {
     //   alert("Minimum password length is 8.");
     //   return;
     // }
-    signIn();
+    // signIn();
   };
-  if (session)
-    return (
-      <div className="my-4 flex items-center flex-col">
-        <h4 className="my-2">
-          Signed in as: <b>{session.user?.name}</b>
-        </h4>
-        <button onClick={() => signOut()} className="button my-2">
-          Logout
-        </button>
-      </div>
-    );
+  // if (session)
+  //   return (
+  //     <div className="my-4 flex items-center flex-col">
+  //       <h4 className="my-2">
+  //         Signed in as: <b>{session.user?.name}</b>
+  //       </h4>
+  //       <button onClick={() => signOut()} className="button my-2">
+  //         Logout
+  //       </button>
+  //     </div>
+  //   );
 
   return (
     <form onSubmit={(e) => handleSubmit(e)}>

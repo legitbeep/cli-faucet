@@ -1,17 +1,19 @@
+import { useState } from "react";
 import Head from "next/head";
 import Router from "next/router";
 import type { AppProps } from "next/app";
-import { SessionProvider } from "next-auth/react";
-import defaultSeoConfig from "../../next-seo.config";
-import Layout from "components/layout";
-import "styles/globals.css";
-
+// import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "next-themes";
 import { DefaultSeo } from "next-seo";
 import NProgress from "nprogress";
 import "@fontsource/poppins";
 
+import defaultSeoConfig from "../../next-seo.config";
+import Layout from "components/layout";
+import Web3ContextProvider from 'context';
+
 import "nprogress/nprogress.css";
+import "styles/globals.css";
 
 // show spinner while route is loading
 Router.events.on("routeChangeStart", () => {
@@ -23,6 +25,7 @@ Router.events.on("routeChangeError", () => NProgress.done());
 NProgress.configure({ showSpinner: false });
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
+
   return (
     <>
       <Head>
@@ -33,11 +36,13 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       </Head>
       <ThemeProvider defaultTheme="system" attribute="class">
         <DefaultSeo {...defaultSeoConfig} />
-        <SessionProvider>
+        {/* <SessionProvider> */}
+        <Web3ContextProvider>
           <Layout>
             <Component {...pageProps} />
           </Layout>
-        </SessionProvider>
+        </Web3ContextProvider>
+        {/* </SessionProvider> */}
       </ThemeProvider>
     </>
   );

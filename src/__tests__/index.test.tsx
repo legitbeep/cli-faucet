@@ -7,7 +7,7 @@ describe("Home", () => {
     render(<Home />);
 
     const heading = screen.getByRole("heading", {
-      name: /nextailwind-starter/i,
+      name: /CLI-Faucet/i,
     });
 
     expect(heading).toBeInTheDocument();
