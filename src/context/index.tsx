@@ -8,7 +8,7 @@ export function useWeb3Context() {
 }
 
 const Web3ContextProvider:React.FC = ({children}) => {
-    const [desiredChain, setDesiredChain] = useState<any>(ChainId.Mumbai);
+    const [desiredChain, setDesiredChain] = useState<number>(ChainId.Mumbai);
     const value = {
         desiredChain,
         setDesiredChain
