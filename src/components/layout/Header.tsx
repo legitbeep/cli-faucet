@@ -52,11 +52,11 @@ const Header = () => {
         />
       <h2 className="text-2xl font-bold hover:underline hover:cursor-pointer">CLI-Faucet</h2>
       <nav className="flex align-center">
-        <button className="button text-white mr-2" onClick={handleOpen}>
+        <button className="button-sec text-white mr-2" onClick={handleOpen}>
           {ChainId[desiredChain] ?? "Select Chain"}
         </button>
         <button
-          className="button text-white"
+          className="button-sec text-white"
           onClick={() => setTheme(resolvedTheme === "light" ? "dark" : "light")}
         >
           {resolvedTheme === "light" ? <RiMoonFill /> : <RiSunLine />}

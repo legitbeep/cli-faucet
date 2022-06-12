@@ -1,11 +1,23 @@
 import type { NextPage } from "next";
 import { useState, useEffect } from "react";
 import { NextSeo } from "next-seo";
+import {
+  useAddress,
+  useMetamask,
+  useCoinbaseWallet,
+  useWalletConnect,
+  useDisconnect,
+} from "@thirdweb-dev/react";
 
-// import Form from "components/auth/Form";
+import ConnectWallet from "components/ConnectWallet";
 
 const Home: NextPage = () => {
   const [mounted, setMounted] = useState(false);
+  const connectWithCoinbaseWallet = useCoinbaseWallet();
+  const connectWithMetamask = useMetamask();
+  const connectWithWalletConnect = useWalletConnect();
+  const address = useAddress();
+  const disconnectWallet = useDisconnect();
 
   useEffect(() => {
     setMounted(true);
@@ -21,16 +33,20 @@ const Home: NextPage = () => {
           <h1 className="text-3xl font-bold text-center ">
             CLI-Faucet
           </h1>
-          {/* <Form /> */}
-          {/* 
-          <button
-            className="px-4 py-2 mt-16 font-semibold text-white bg-black rounded-md dark:text-black dark:bg-white"
-            onClick={() => {
-              setTheme(resolvedTheme === "light" ? "dark" : "light");
-            }}
-          >
-            Change Theme
-          </button> */}
+          <div className="min-h-[200px] w-full flex flex-col items-center justify-center" >
+            {!address 
+              ? <div className="max-w-[200px] w-full flex flex-col">
+                  <ConnectWallet text="Metamask Wallet" onClick={connectWithMetamask} />
+                  <ConnectWallet text="Coinbase Wallet" onClick={connectWithCoinbaseWallet} />
+                  <ConnectWallet text="Wallet Connect" onClick={connectWithWalletConnect} />
+                </div>
+              :
+              <>
+                <h4><b>Address :</b>{address}</h4>
+              <ConnectWallet text="Disconnect Wallet" onClick={disconnectWallet} />
+              </> 
+            }
+          </div>
         </div>
       </section>
     </>
